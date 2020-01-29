@@ -13,7 +13,15 @@ object CreateTable extends CreateTableInterface {
       |Test
       |Test
       |""".stripMargin
+
   def execute (hiveContext: HiveContext) = {
-    hiveContext.sql("""asd""")
+    hiveContext.sql("""test	test""")
+    hiveContext.sql("""test""test""")
+    hiveContext.sql("""test "test" test""")
+    hiveContext.sql(s"""test${a}""")
+    println("""
+              | CREATE TABLE retail(id string)
+              | WITH SERDEPROPERTIES ('separatorChar' = '"'
+                """)
   }
 }

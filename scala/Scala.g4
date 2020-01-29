@@ -570,7 +570,7 @@ IntegerLiteral
 
 
 StringLiteral
-   : '"' StringElement* '"' | '"""' MultiLineChars '"""'
+   : '"' StringElement* '"' | 's'?'"""' MultiLineChars '"""'
    ;
 
 FloatingPointLiteral
@@ -639,12 +639,15 @@ fragment Idrest
 
 
 fragment StringElement
-   : '\u0020' | '\u0021' | '\u0023' .. '\u007F' | CharEscapeSeq
+   : '\u0020' | '\u0021' | '\u0023' .. '\u007F' | '\t' | CharEscapeSeq
    ;
 
+fragment QuteInMultiLineString
+   : '"' '"'? ( Letter | WhiteSpace | '\'')
+   ;
 
 fragment MultiLineChars
-   : (StringElement | NL) *
+   : (StringElement | NL | QuteInMultiLineString | '\'') *
    ;
 
 
